@@ -1,5 +1,6 @@
 package ru.overwrite.protect.bukkit;
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BossBar;
@@ -24,7 +25,7 @@ public final class PasswordHandler {
     private final Config pluginConfig;
 
     @Getter
-    private final Map<String, Integer> attempts = new HashMap<>();
+    private final Object2IntOpenHashMap<String> attempts = new Object2IntOpenHashMap<>();
 
     @Getter
     private final Map<String, BossBar> bossbars = new HashMap<>();
@@ -90,11 +91,10 @@ public final class PasswordHandler {
         }
         String playerName = player.getName();
         if (pluginConfig.getPunishSettings().enableAttempts()) {
-            attempts.put(playerName, attempts.getOrDefault(playerName, 0) + 1);
+            attempts.addTo(playerName, 1);
         }
-        ServerProtectorPasswordFailEvent failEvent = new ServerProtectorPasswordFailEvent(player, attempts.get(playerName));
-        failEvent.callEvent();
-        if (failEvent.isCancelled()) {
+        ServerProtectorPasswordFailEvent failEvent = new ServerProtectorPasswordFailEvent(player, attempts.getInt(playerName));
+        if (!failEvent.callEvent()) {
             return;
         }
         player.sendMessage(pluginConfig.getMessages().incorrect());
@@ -115,8 +115,7 @@ public final class PasswordHandler {
             return;
         }
         ServerProtectorPasswordSuccessEvent successEvent = new ServerProtectorPasswordSuccessEvent(player);
-        successEvent.callEvent();
-        if (successEvent.isCancelled()) {
+        if (!successEvent.callEvent()) {
             return;
         }
         String playerName = player.getName();
@@ -125,7 +124,7 @@ public final class PasswordHandler {
         if (pluginConfig.getMessageSettings().sendTitle()) {
             Utils.sendTitleMessage(pluginConfig.getTitles().correct(), player);
         }
-        plugin.getPerPlayerTime().remove(playerName);
+        plugin.getPerPlayerTime().removeInt(playerName);
         if (pluginConfig.getSoundSettings().enableSounds()) {
             Utils.sendSound(pluginConfig.getSoundSettings().onPasCorrect(), player);
         }

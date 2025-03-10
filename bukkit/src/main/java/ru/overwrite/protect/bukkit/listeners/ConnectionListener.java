@@ -157,7 +157,7 @@ public class ConnectionListener implements Listener {
                 }
             }
         }
-        plugin.getPerPlayerTime().remove(playerName);
+        plugin.getPerPlayerTime().removeInt(playerName);
         api.unsavePlayer(playerName);
     }
 

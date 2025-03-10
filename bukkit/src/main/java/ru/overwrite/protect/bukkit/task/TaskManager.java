@@ -150,7 +150,7 @@ public final class TaskManager {
                         passwordHandler.getBossbars().put(playerName, bossbar);
                     }
                 } else {
-                    int newTime = plugin.getPerPlayerTime().compute(playerName, (k, currentTime) -> currentTime + 1);
+                    int newTime = plugin.getPerPlayerTime().addTo(playerName, 1);
                     BossBar bossBar = passwordHandler.getBossbars().get(playerName);
                     if (bossbarSettings.enableBossbar() && bossBar != null) {
                         bossBar.setTitle(bossbarSettings.bossbarMessage().replace("%time%", Integer.toString(time - newTime)));
