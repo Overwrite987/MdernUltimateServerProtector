@@ -3,9 +3,10 @@ package ru.overwrite.protect.bukkit.api.events;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.player.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class ServerProtectorPasswordFailEvent extends ServerProtectorPlayerEvent implements Cancellable {
+public class ServerProtectorPasswordFailEvent extends PlayerEvent implements Cancellable {
 
     private static final HandlerList HANDLERS = new HandlerList();
 
