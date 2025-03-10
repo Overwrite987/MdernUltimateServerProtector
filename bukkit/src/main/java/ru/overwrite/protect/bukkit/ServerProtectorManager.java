@@ -57,8 +57,6 @@ public class ServerProtectorManager extends JavaPlugin {
             new PaperLogger(this) :
             new BukkitLogger(this);
 
-    private boolean paper;
-
     private FileConfiguration messageFile;
 
     @Setter
@@ -178,13 +176,13 @@ public class ServerProtectorManager extends JavaPlugin {
         pluginManager.registerEvents(new ChatListener(this), this);
         pluginManager.registerEvents(new ConnectionListener(this), this);
         pluginManager.registerEvents(new MainListener(this), this);
-        if (paper && pluginConfig.getBlockingSettings().blockTabComplete()) {
+        if (pluginConfig.getBlockingSettings().blockTabComplete()) {
             pluginManager.registerEvents(new TabCompleteListener(this), this);
         }
     }
 
     public void registerCommands(PluginManager pluginManager, ConfigurationSection mainSettings) {
-        if (mainSettings.getBoolean("use-command", true) && paper) {
+        if (mainSettings.getBoolean("use-command", true)) {
             try {
                 CommandMap commandMap = server.getCommandMap();
                 Constructor<PluginCommand> constructor = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);

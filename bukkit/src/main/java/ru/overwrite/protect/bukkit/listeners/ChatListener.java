@@ -51,9 +51,6 @@ public class ChatListener implements Listener {
         String label = cutCommand(message);
         if (pluginConfig.getMainSettings().useCommand()) {
             if (label.equalsIgnoreCase("/" + pluginConfig.getMainSettings().pasCommand())) {
-                if (!plugin.isPaper()) {
-                    passwordHandler.checkPassword(player, message.split(" ", 1)[1], false);
-                }
                 return;
             }
         }

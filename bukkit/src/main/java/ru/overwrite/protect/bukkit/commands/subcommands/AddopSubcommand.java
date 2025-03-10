@@ -19,7 +19,7 @@ public class AddopSubcommand extends AbstractSubCommand {
         if (args.length > 1) {
             String nickname = args[1];
 
-            if (plugin.isPaper() && Utils.SUB_VERSION >= 16) {
+            if (Utils.SUB_VERSION >= 16) {
                 OfflinePlayer targetPlayer = Bukkit.getOfflinePlayerIfCached(nickname);
                 if (targetPlayer == null) {
                     sender.sendMessage(pluginConfig.getUspMessages().playerNotFound().replace("%nick%", nickname));
