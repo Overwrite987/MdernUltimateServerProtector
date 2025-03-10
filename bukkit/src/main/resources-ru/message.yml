@@ -73,8 +73,6 @@ log-format:
 system:
   baseline-warn: "§6============= §c! ВНИМАНИЕ ! §6============="
   baseline-default: "§6========================================"
-  paper-1: "§eВы используете нестабильное ядро для вашего сервера Minecraft! Рекомендуется использовать §aPaper"
-  paper-2: "§eСкачать Paper: §ahttps://papermc.io/downloads/all"
   bungeecord-1: "§eУ вас включена настройка §6bungeecord§a, но плагин §6BungeeGuard §eне установлен!"
   bungeecord-2: "§eБез этого плагина вы подвергаете себя §cопасности! §eУстановите его для дальнейшей безопасной работы."
   bungeecord-3: "§eСкачать BungeeGuard: §ahttps://www.spigotmc.org/resources/bungeeguard.79601/"

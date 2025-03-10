@@ -80,20 +80,6 @@ public class ServerProtectorManager extends JavaPlugin {
     @Getter(AccessLevel.NONE)
     public final Server server = getServer();
 
-    public void checkPaper() {
-        if (server.getName().equals("CraftBukkit")) {
-            SystemMessages systemMessages = pluginConfig.getSystemMessages();
-            runner.runPeriodical(() -> {
-                pluginLogger.info(systemMessages.baselineWarn());
-                pluginLogger.info(systemMessages.paper1());
-                pluginLogger.info(systemMessages.paper2());
-                pluginLogger.info(systemMessages.baselineWarn());
-            }, 0L, 20L * 1800);
-            return;
-        }
-        this.paper = true;
-    }
-
     @Getter
     private boolean safe;
 

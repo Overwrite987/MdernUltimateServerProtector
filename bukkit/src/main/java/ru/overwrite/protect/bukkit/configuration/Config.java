@@ -580,8 +580,6 @@ public final class Config {
         this.systemMessages = new SystemMessages(
                 getMessage(system, "baseline-warn"),
                 getMessage(system, "baseline-default"),
-                getMessage(system, "paper-1"),
-                getMessage(system, "paper-2"),
                 getMessage(system, "bungeecord-1"),
                 getMessage(system, "bungeecord-2"),
                 getMessage(system, "bungeecord-3"),
