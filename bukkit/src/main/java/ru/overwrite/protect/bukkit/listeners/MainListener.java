@@ -31,19 +31,11 @@ public class MainListener implements Listener {
     public void onMove(PlayerMoveEvent e) {
         if (!api.isAnybodyCaptured())
             return;
-        if (pluginConfig.getBlockingSettings().allowOrientationChange() && hasChangedOrientation(e.getFrom(), e.getTo()) && !hasChangedPosition(e.getFrom(), e.getTo())) {
+        if (pluginConfig.getBlockingSettings().allowOrientationChange() && e.hasChangedOrientation() && !e.hasChangedPosition()) {
             return;
         }
         Player player = e.getPlayer();
         api.handleInteraction(player, e);
-    }
-
-    private boolean hasChangedOrientation(Location from, Location to) {
-        return from.getPitch() != to.getPitch() || from.getYaw() != to.getYaw();
-    }
-
-    public boolean hasChangedPosition(Location from, Location to) {
-        return from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ();
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
